@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/hanwen/catkin_ws/install/setup.sh

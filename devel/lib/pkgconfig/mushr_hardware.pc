@@ -1,0 +1,8 @@
+prefix=/home/hanwen/catkin_ws/devel
+
+Name: mushr_hardware
+Description: Description of mushr_hardware
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

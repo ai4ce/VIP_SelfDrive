@@ -1,0 +1,2 @@
+mushr/mushr_base/mushr_base/ackermann_cmd_mux:mushr/mushr_base/mushr_base/mushr_base:mushr/mushr_base/vesc/vesc:mushr/mushr_base/vesc/vesc_ackermann:mushr/mushr_base/vesc/vesc_driver:mushr/mushr_base/vesc/vesc_main:mushr/mushr_base/vesc/vesc_msgs:mushr/mushr_description:mushr/mushr_hardware/mushr_hardware:mushr/mushr_hardware/realsense2_description:mushr_ros_intro:mushr_sim
+-DCATKIN_DEVEL_PREFIX=/home/hanwen/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hanwen/catkin_ws/install -G Unix Makefiles
