@@ -1,0 +1,8 @@
+prefix=/home/hanwen/catkin_ws/install
+
+Name: mushr_ros_intro
+Description: Description of mushr_ros_intro
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

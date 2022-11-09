@@ -1,0 +1,8 @@
+prefix=/home/hanwen/catkin_ws/devel
+
+Name: mushr_description
+Description: Description of mushr_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: realsense2_description
