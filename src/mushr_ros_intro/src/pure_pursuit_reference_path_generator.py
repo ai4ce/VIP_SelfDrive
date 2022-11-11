@@ -23,6 +23,8 @@ def listener():
     # run simultaneously.
     rospy.init_node('listener', anonymous=True)
 
+    # Declares our node subscribes to the chatter topc which is of type String
+    # When a new message is received callback is invoked with message as the first argument
     rospy.Subscriber('chatter', String, callback)
 
     # spin() simply keeps python from exiting until this node is stopped
