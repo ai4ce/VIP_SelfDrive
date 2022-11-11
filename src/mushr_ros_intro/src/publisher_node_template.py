@@ -39,16 +39,31 @@
 import rospy
 from std_msgs.msg import String
 
+# Defines the talker's interface to the rest of ROS
 def talker():
+    # Declares that your node is publishing to the chatter topic using the message type string. 
+    # String is a class from std_msgs. 
+    # The queue_size limits the amount of queued messages if any subscriber is not receiving them fast enough
     pub = rospy.Publisher('chatter', String, queue_size=10)
+    # init_node() names are node which is necessary for it to communicate wtih the master node
+    # By setting anonymous = Ture our node will have a have random numbers appended to it to make it unique
     rospy.init_node('talker', anonymous=True)
+    # A Tate object allows us to llop at a desired rate. The integer passed as an arugment is tranlated into hertz
     rate = rospy.Rate(10) # 10hz
+    # Does work if rospy is running. You must check shutdown to see if your code should exit
     while not rospy.is_shutdown():
+        # hello_strin has a string containing "hello world" and a timestamp
         hello_str = "hello world %s" % rospy.get_time()
+        # loginfo() prints the message to the screen, writes it to the Node's log file, and writes it to rosout.
+        # rosout is a tool for debugging
         rospy.loginfo(hello_str)
+        # publish our string to the chatter topic
         pub.publish(hello_str)
+        # Calling rate.slee() maintains the desired rate through the loop ()
         rate.sleep()
-
+# Standard Python __main__ check
+# Catches the ross interrupt exception which is thrown by rospy.sleep() and rospy.Rate.sleep() when Ctrl-S is pressed or the node is shutdown
+# Raised to prevent continued execution of code after sleep()
 if __name__ == '__main__':
     try:
         talker()
