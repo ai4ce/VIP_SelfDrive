@@ -48,7 +48,7 @@ def talker():
     # init_node() names are node which is necessary for it to communicate wtih the master node
     # By setting anonymous = Ture our node will have a have random numbers appended to it to make it unique
     rospy.init_node('talker', anonymous=True)
-    # A Tate object allows us to llop at a desired rate. The integer passed as an arugment is tranlated into hertz
+    # A rate object allows us to loop at a desired rate. The integer passed as an arugment is tranlated into hertz
     rate = rospy.Rate(10) # 10hz
     # Does work if rospy is running. You must check shutdown to see if your code should exit
     while not rospy.is_shutdown():
