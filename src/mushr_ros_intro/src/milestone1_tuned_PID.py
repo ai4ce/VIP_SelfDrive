@@ -16,7 +16,7 @@ from simple_pid import PID
 
 LIDAR_LEFT = 400#540 # lidar data index pointing at the left side of the car
 LIDAR_RIGHT = 320#180
-LIDAR_RANGE = 15 # number of points needed to determine the range
+LIDAR_RANGE = 30 # number of points needed to determine the range
 
 pid = PID(2.5, 0.2, 0.1, setpoint=0.0)
 
@@ -39,7 +39,7 @@ def lidar_callback(data, args):
     rospy.loginfo('Steering Angle: %s', steering_angle)
 
     
-    drive = AckermannDrive(steering_angle=steering_angle, speed=1.5)
+    drive = AckermannDrive(steering_angle=steering_angle, speed=1.0)
     pub_controls.publish(AckermannDriveStamped(drive=drive))
 
 if __name__ == "__main__":

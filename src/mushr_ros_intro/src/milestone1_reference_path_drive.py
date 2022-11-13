@@ -14,6 +14,7 @@ from geometry_msgs.msg import (
 from tf.transformations import quaternion_from_euler
 from simple_pid import PID
 
+# Potentially adjust these values for a more stable drive: Reference the values in the tuned milestone 1 control program
 LIDAR_LEFT = 450#540 # lidar data index pointing at the left side of the car
 LIDAR_RIGHT = 270#180
 LIDAR_RANGE = 30 # number of points needed to determine the range
@@ -27,6 +28,12 @@ def send_init_pose(pub_init_pose, init_pose):
     pose = PoseWithCovariance(pose=Pose(position=point, orientation=q))
     pub_init_pose.publish(PoseWithCovarianceStamped(pose=pose))
 
+# Define a publish pose function
+def publish_pose():
+    # Get the car pose
+    # Publish it to the car pose topic
+    # Log it for debugging reasons
+    # Potentially create a new refernece path topic
 def lidar_callback(data, args):
     pub_controls = args
     left_dist = np.nanmean(np.array(data.ranges[LIDAR_LEFT-LIDAR_RANGE:LIDAR_LEFT+LIDAR_RANGE]))
@@ -38,9 +45,12 @@ def lidar_callback(data, args):
     steering_angle = pid(control_value)
     rospy.loginfo('Steering Angle: %s', steering_angle)
 
-    
+    # Potentiall adjust the speed for a more stable drive: Reference the speed value in the tuned milestone 1 control program
     drive = AckermannDrive(steering_angle=steering_angle, speed=1.0)
     pub_controls.publish(AckermannDriveStamped(drive=drive))
+
+    # Call the pose publisher
+    # publish_pose()
 
 if __name__ == "__main__":
 
