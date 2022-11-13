@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from tarfile import StreamError
+
 import rospy
 import numpy as np
 from ackermann_msgs.msg import AckermannDrive, AckermannDriveStamped
@@ -14,11 +14,24 @@ from geometry_msgs.msg import (
 from tf.transformations import quaternion_from_euler
 from simple_pid import PID
 
-LIDAR_LEFT = 450#540 # lidar data index pointing at the left side of the car
-LIDAR_RIGHT = 270#180
-LIDAR_RANGE = 30 # number of points needed to determine the range
+
+LIDAR_LEFT = 450
+LIDAR_RIGHT = 270
+LIDAR_RANGE = 30
 
 pid = PID(2.5, 0.2, 0.1, setpoint=0.0)
+
+# Create a function to read in the waypoints from the refence file
+# Determine the lookahaed position
+# Calculate the ehading vector
+# Determine the closest point on the trajectory from car position
+# Calculate the trajectory vector
+# Calculate the Cross-Track Error
+# Use the Stanley Formulation to determine steering angle
+# Imporve the look-ahead distance based on the speed of the vehicle
+# Visualize reference path in Rviz
+# Visualize the lookahead position
+# Visualize waypoint markers
 
 def send_init_pose(pub_init_pose, init_pose):
     x, y, theta = float(init_pose[0]), float(init_pose[1]), float(init_pose[2])
