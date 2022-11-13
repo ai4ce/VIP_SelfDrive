@@ -14,9 +14,10 @@ from geometry_msgs.msg import (
 from tf.transformations import quaternion_from_euler
 from simple_pid import PID
 
-LIDAR_LEFT = 450#540 # lidar data index pointing at the left side of the car
-LIDAR_RIGHT = 270#180
-LIDAR_RANGE = 30 # number of points needed to determine the range
+# Values tuned: Left - 200 degrees, Right - 160 degrees
+LIDAR_LEFT = 400
+LIDAR_RIGHT = 320
+LIDAR_RANGE = 30
 
 pid = PID(2.5, 0.2, 0.1, setpoint=0.0)
 
@@ -38,9 +39,12 @@ def lidar_callback(data, args):
     steering_angle = pid(control_value)
     rospy.loginfo('Steering Angle: %s', steering_angle)
 
-    
+    # Speed adjusted to 1.0
     drive = AckermannDrive(steering_angle=steering_angle, speed=1.0)
     pub_controls.publish(AckermannDriveStamped(drive=drive))
+
+    # Call the pose publisher
+    # publish_pose()
 
 if __name__ == "__main__":
 
