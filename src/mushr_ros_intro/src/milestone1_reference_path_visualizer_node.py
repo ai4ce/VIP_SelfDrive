@@ -24,7 +24,7 @@ reference_path = MarkerArray()
 
 def reference_path_loader():
     """
-    Loads an input set of coordinates from a disk file into the global marker array.
+    Loads an input set of coordinates from a disk file as waypoints into the global marker array which functions as a reference path.
     """
 
     # Create local reference path to handle raw coordinate information
@@ -72,9 +72,11 @@ def reference_path_loader():
 
 def reference_path_visiualizer():
     """
-    Load in the reference path from a text file of coordinates.
     Publish the reference path.
     """
+
+    # Load the reference path
+    reference_path_loader()
 
     # We are publishing the reference path which is a MakerArray type message
     pub = rospy.Publisher('/visualization_reference_path', MarkerArray, queue_size=100)
@@ -87,18 +89,23 @@ def reference_path_visiualizer():
 
     # Publish our reference path
     while not rospy.is_shutdown():
-        # print the marker array to the screen, write it to the log file, and write it to rosout
-        rospy.loginfo(reference_path.markers)
         # Publish the reference path to the visualization topic
         pub.publish(reference_path)
 
-        # Maintain our desired rate through the loop
+        # Create publish confirmation message
+        publish_success = "Reference path published at %s" % rospy.get_time()
+
+        # Confirm the reference path was published
+        rospy.loginfo(publish_success)
+        
+        # Maintain our desired publish rate
         rate.sleep()
 
 # Standard Python file execution check
 # Maintains a 1 Hz publish rate
 if __name__ == '__main__':
     try:
+        # Visualize the reference path
         reference_path_visiualizer()
     except rospy.ROSInterruptException:
         pass
