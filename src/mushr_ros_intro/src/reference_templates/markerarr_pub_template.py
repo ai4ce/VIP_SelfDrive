@@ -10,8 +10,6 @@ from visualization_msgs.msg import Marker
 from visualization_msgs.msg import MarkerArray
 # rospy is a pure Python client library for ROS
 import rospy
-# What are we using math for?
-import math
 # numpy supports mult dimensional array and matrices and a collection of high-level mathematical functions to operate on these arrays
 import numpy as np
 
@@ -26,7 +24,7 @@ rospy.init_node('register')
 # Creates an array of markers which is a message type
 markerArray = MarkerArray()
 
-# What is the trajectory?
+# Load the reference path
 '''load the trajectory'''
 def load_traj():
     # Return N x 2 trajectory
@@ -50,9 +48,8 @@ def load_traj():
 # Collect the trajectory of the reference path
 traj = load_traj()
 
-# What is count for?
+# Used to limit the maximum number of markers
 count = 0
-# Why do we enable a maximum number of markers?
 MARKERS_MAX = 10000
 
 # While the visualizer node is not shutdown
@@ -81,13 +78,12 @@ while not rospy.is_shutdown():
         markerArray.markers.append(marker)
         
    # Renumber the marker IDs
-        # What is this comparison for?
         if(count > MARKERS_MAX):
             sys.exit()
         #markerArray.markers.pop(0)
-        # Initialize a uniwue id variable
+        # Initialize a unique id variable
         id = 0
-        # Give eacb  armer an incremental id
+        # Give each marker an incremental id
         for m in markerArray.markers:
             m.id = id
             id += 1
