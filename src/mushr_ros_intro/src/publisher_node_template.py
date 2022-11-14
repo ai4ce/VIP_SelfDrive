@@ -46,7 +46,7 @@ def talker():
     # The queue_size limits the amount of queued messages if any subscriber is not receiving them fast enough
     pub = rospy.Publisher('chatter', String, queue_size=10)
     # init_node() names are node which is necessary for it to communicate wtih the master node
-    # By setting anonymous = Ture our node will have a have random numbers appended to it to make it unique
+    # By setting anonymous = True our node will have a have random numbers appended to it to make it unique
     rospy.init_node('talker', anonymous=True)
     # A rate object allows us to loop at a desired rate. The integer passed as an arugment is tranlated into hertz
     rate = rospy.Rate(10) # 10hz
