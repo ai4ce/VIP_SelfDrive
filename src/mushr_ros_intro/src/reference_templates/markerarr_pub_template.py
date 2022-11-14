@@ -2,8 +2,8 @@
 
 # sys module provides the ability to manipulate the Python runtime environment
 import sys
-# roslib is the base dependency of all ROS client libraries an tools
-# load_manifest() reads the package manifest and sets up the python library path based on the package dependencies
+# roslib is the base dependency of all ROS client libraries and tools
+# load_manifest() reads the package manifest and sets up the python library path based on the Package dependencies
 import roslib; roslib.load_manifest('visualization_marker_tutorials')
 # Markers allow programmatic addition of various primitive shapes to the 3D view by sending a marker or marker array message
 from visualization_msgs.msg import Marker
@@ -83,7 +83,7 @@ while not rospy.is_shutdown():
         #markerArray.markers.pop(0)
         # Initialize a unique id variable
         id = 0
-        # Give each marker an incremental id
+        # Give each marker an incremental ID
         for m in markerArray.markers:
             m.id = id
             id += 1

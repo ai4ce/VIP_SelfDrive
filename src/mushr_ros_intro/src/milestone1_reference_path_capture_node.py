@@ -26,9 +26,6 @@ def save_path():
 
     # Save the reference path array to a text file
     with open(REFERENCE_PATH_FILE_OUTPUT_PATH + "reference_path.txt", 'w') as f:
-        # Create output file header
-        f.write("x-coordinate, y-coordinate\n")
-        
         # Convert the waypoints to string and then add a newline before they are written to the file
         for wp in reference_path_array:
             f.write(str(wp[0]) + ',' + str((wp[1])) + "\n")
